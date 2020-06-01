@@ -1,3 +1,5 @@
+package edu.sdccd.cisc191.heaslykr;
+
 import java.net.URL;
 import java.io.*;
 
@@ -45,7 +47,7 @@ public class ThreadManager {
 
                 //Parse url split into string array
                 String[] words = test.split("/");
-                String userFile = directory + "/" + words[words.length - 1] + ".xml";
+                String userFile = directory + "/" + words[words.length - 1];
 
                 //Open an input stream from Url Object
                 BufferedInputStream reader = new BufferedInputStream(url1.openStream());

@@ -1,6 +1,9 @@
+package edu.sdccd.cisc191.heaslykr;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /*
@@ -17,7 +20,7 @@ public class IntroGUI extends JFrame{
     private final int WINDOW_WIDTH = 600;
     private final int WINDOW_HEIGHT = 300;
 
-    //Fields for aesthetic colors & text insets
+    //Fields for aesthetic colors &amp; text insets
     private Color backgroundColor = new Color(231,231,231);
     private Color pinkColor = new Color(227,162,155);
     private Color dustyColor = new Color(219,172,164);
@@ -46,7 +49,7 @@ public class IntroGUI extends JFrame{
     private String nameFinal;
     private File saveFolder;
 
-    //Fields for Error & Main Game GUIs
+    //Fields for Error &amp; Main Game GUIs
     private ErrorNameWindow enw;
     private MainGUI mainGo;
 
@@ -101,68 +104,77 @@ public class IntroGUI extends JFrame{
 ////////////////methods///////////////////////
 
     /**Method to initialize North Panel. Panel will
-     * house space, color & dimension only and
+     * house space, color &amp; dimension only and
      * will not interact with user.
      */
     public void makeNorthPanel(){
-        //Initialize panel & design
+        //Initialize panel &amp; design
         northPanel = new JPanel();
         northPanel.setBackground(backgroundColor);
     }
 
     /**Method to initialize South Panel. Panel will
-     * house space, color & dimension only and
+     * house space, color &amp; dimension only and
      * will not interact with user.
      */
     public void makeSouthPanel(){
-        //Initialize panel & design
+        //Initialize panel &amp; design
         southPanel = new JPanel();
         southPanel.setBackground(backgroundColor);
     }
 
     /**Method to initialize West Panel. Panel will
-     * house an ImageIcon & dimension only and
+     * house an ImageIcon &amp; dimension only and
      * will not interact with user.
      */
     public void makeWestPanel(){
         //Initialize panel
         westPanel = new JPanel();
 
-        //Initialize logo, set design, & set to JLabel
-        logo = new ImageIcon("src/ImageFiles/logoSmall.png");
+        //Initialize logo, set design, &amp; set to JLabel
+        try {
+            logo = new ImageIcon(ImageIO.read(getClass().getResource(("/img/logoSmall.png"))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         logo1 = new JLabel();
         logo1.setIcon(logo);
         logo1.setForeground(pinkColor);
 
-        //Add components & set design
+        //Add components &amp; set design
         westPanel.add(logo1);
         westPanel.setBackground(backgroundColor);
     }
 
     /**Method to initialize East Panel. Panel will
-     * house game Logo, color & dimension only and
+     * house game Logo, color &amp; dimension only and
      * will not interact with user.
      */
     public void makeEastPanel(){
         //Initialize panel
         eastPanel = new JPanel();
 
-        //Initialize ImageIcon & add to Jlabel
-        eastPane = new ImageIcon("src/Images/EastPane.png");
+        //Initialize ImageIcon &amp; add to Jlabel
+        try {
+            eastPane = new ImageIcon(ImageIO.read(getClass().getResource(("/img/eastPanel.png"))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         eastPane1 = new JLabel();
         eastPane1.setIcon(eastPane);
 
-        //Add components & set design
+        //Add components &amp; set design
         eastPanel.add(eastPane1);
         eastPanel.setBackground(backgroundColor);
     }
 
     public void makeCenterPanel(){
-        //Initialize panel & set layout
+        //Initialize panel &amp; set layout
         centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(5,1));
 
-        //Set restrictions & look for game instruction text 1
+        //Set restrictions &amp; look for game instruction text 1
         welcomeRules1.setText(rules1);
         welcomeRules1.setWrapStyleWord(true);
         welcomeRules1.setLineWrap(true);
@@ -171,7 +183,7 @@ public class IntroGUI extends JFrame{
         welcomeRules1.setFocusable(false);
         welcomeRules1.setMargin(center);
 
-        //Set restrictions & look for game instruction text 2
+        //Set restrictions &amp; look for game instruction text 2
         welcomeRules2.setText(rules2);
         welcomeRules2.setWrapStyleWord(true);
         welcomeRules2.setLineWrap(true);
@@ -233,7 +245,7 @@ public class IntroGUI extends JFrame{
         enterName.setHorizontalAlignment(0);
         enterName.setForeground(metal);
 
-        //Add components & set design
+        //Add components &amp; set design
         centerPanel.add(welcomeHeader);
         centerPanel.add(welcomeRules1);
         centerPanel.add(welcomeRules2);
