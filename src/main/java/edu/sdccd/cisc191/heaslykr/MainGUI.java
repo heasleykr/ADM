@@ -1,7 +1,8 @@
-
+package edu.sdccd.cisc191.heaslykr;
 
 import java.awt.*;
 import java.awt.event.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class MainGUI extends JFrame{
     private final int WINDOW_WIDTH = 950;
     private final int WINDOW_HEIGHT = 700;
 
-    //Fields for aesthetic colors & text insets
+    //Fields for aesthetic colors &amp; text insets
     private Color backgroundColor = new Color(231,231,231);
     private Color pinkColor = new Color(227,162,155);
     private Color dustyColor = new Color(219,172,164);
@@ -47,7 +48,7 @@ public class MainGUI extends JFrame{
     private ImageIcon arrow;
     private ImageIcon greyArrow;
 
-    //Fields for messages & user interaction
+    //Fields for messages &amp; user interaction
     private String userName;
     private String instructions1;
     private String urlJob;
@@ -71,7 +72,7 @@ public class MainGUI extends JFrame{
     //Download Count Object
     private QueueCount qC = new QueueCount();
 
-    //JList & JScrollPane for completed downloads
+    //JList &amp; JScrollPane for completed downloads
     private JScrollPane spane;
     private ArrayList<String> display = new ArrayList<String>();
     private String[] bigData = new String[100];
@@ -131,47 +132,60 @@ public class MainGUI extends JFrame{
      * with user.
      */
     public void makeNorthPanel(){
-        //Initialize panel & design
+        //Initialize panel &amp; design
         northPanel = new JPanel();
 
-        //Initialize ImageIcons & set to labels
-        gridNorthR = new ImageIcon("src/ImageFiles/northPanelR.png");
-        gridNorthL = new ImageIcon("src/ImageFiles/northPanelL.png");
+        //Initialize ImageIcons &amp; set to labels
+        try {
+            gridNorthR = new ImageIcon(ImageIO.read(getClass().getResource(("/img/northPanelR.png"))));
+            gridNorthL = new ImageIcon(ImageIO.read(getClass().getResource(("/img/northPanelL.png"))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         northGridR = new JLabel(gridNorthR);
         northGridL = new JLabel(gridNorthL);
 
-        //Set layout & add components
+        //Set layout &amp; add components
         northPanel.setLayout(new GridLayout(1,1));
         northPanel.add(northGridL);
 
     }
 
     /**Method to initialize South Panel. Panel will
-     * house space, color & dimension only and
+     * house space, color &amp; dimension only and
      * will not interact with user.
      */
     public void makeSouthPanel(){
-        //Initialize panel & design
+        //Initialize panel &amp; design
         southPanel = new JPanel();
 
         //Initialize ImageIcons and set to label
-        gridSouth = new ImageIcon("src/ImageFiles/southPanel.png");
+        try {
+            gridSouth = new ImageIcon(ImageIO.read(getClass().getResource(("/img/southPanel.png"))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         southGrid = new JLabel(gridSouth);
         southPanel.setBackground(dustyColor);
         southPanel.add(southGrid);
     }
 
     /**Method to initialize East Panel. Panel will
-     * house space, color & dimension only and
+     * house space, color &amp; dimension only and
      * will not interact with user.
      */
     public void makeEastPanel(){
-        //Initialize panel & design
+        //Initialize panel &amp; design
         eastPanel = new JPanel();
         eastPanel.setBackground(dustyColor);
 
         //Initialize ImageIcons and set to label
-        gridEast = new ImageIcon("src/ImageFiles/eastPanel.png");
+        try {
+            gridEast = new ImageIcon(ImageIO.read(getClass().getResource(("/img/eastPanel.png"))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         eastGrid = new JLabel(gridEast);
         eastPanel.add(eastGrid);
     }
@@ -184,7 +198,7 @@ public class MainGUI extends JFrame{
      * @param fullPath the file path to desired directory.
      */
     public void makeWestPanel(String name, String directory, String fullPath){
-        //Initialize panel & design
+        //Initialize panel &amp; design
         westPanel = new JPanel();
         westPanel.setBackground(backgroundColor);
 
@@ -194,19 +208,31 @@ public class MainGUI extends JFrame{
         nameLabel.setForeground(metal);
         nameLabel.setSize(200,10);
 
-        //Initialize aesthetic panel & set to JLabel
-        hold1 = new ImageIcon("src/ImageFiles/centerHold.png");
+        //Initialize aesthetic panel &amp; set to JLabel
+        try {
+            hold1 = new ImageIcon(ImageIO.read(getClass().getResource(("/img/centerHold.png"))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         westHold = new JLabel(hold1);
 
         //Initialize Download JButton
         startDownload = new JButton();
-        arrow = new ImageIcon("src/ImageFiles/arrow.png");
+        try {
+            arrow = new ImageIcon(ImageIO.read(getClass().getResource(("/img/arrow.png"))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         startDownload.setIcon(arrow);
         startDownload.setOpaque(true);
         startDownload.setBackground(dustyColor);
 
         //Initialize "selected" Download image
-        greyArrow = new ImageIcon("src/ImageFiles/greyArrow.png");
+        try {
+            greyArrow = new ImageIcon(ImageIO.read(getClass().getResource(("/img/greyArrow.png"))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //initialize URL space/download thread interaction point
         enterUrl = new JTextField("Enter URL here", 0);
@@ -245,7 +271,7 @@ public class MainGUI extends JFrame{
 
                             //make file name and add to completed Arraylist
                             words = urlJob.split("/");
-                            userFile = filePath + "/" + words[words.length - 1] + ".xml";
+                            userFile = filePath + "/" + words[words.length - 1];
                             display.add(userFile);
                             addDownload();
 
@@ -259,7 +285,7 @@ public class MainGUI extends JFrame{
 
         //Initialize user messages
         instructions1 = "Copy and paste URL of content you wish to download. You may start as many downloads as you like.";
-        //Set restrictions & look for display text
+        //Set restrictions &amp; look for display text
         instructions = new JTextArea(10,8);
         instructions.setText(instructions1);
         instructions.setWrapStyleWord(true);
@@ -270,7 +296,7 @@ public class MainGUI extends JFrame{
         instructions.setMargin(centered);
         instructions.setForeground(metal);
 
-        //Set restrictions & look for display text
+        //Set restrictions &amp; look for display text
         acknowledgeUserM = "Ready for Task";
         acknowledgeUser = new JTextArea();
         acknowledgeUser.setText(acknowledgeUserM);
@@ -282,7 +308,7 @@ public class MainGUI extends JFrame{
         acknowledgeUser.setMargin(centered);
         acknowledgeUser.setForeground(metal);
 
-        //Set layout & add components
+        //Set layout &amp; add components
         westPanel.setLayout(new GridLayout(6,1));
         westPanel.add(nameLabel);
         westPanel.add(westHold);
@@ -294,7 +320,7 @@ public class MainGUI extends JFrame{
     }
 
     /**Method to initialize Center Panel. Panel will
-     * display queue count & queue thread progress.
+     * display queue count &amp; queue thread progress.
      * User can choose to open downloaded files by
      * pressing the "Open" button.
      */
@@ -302,7 +328,7 @@ public class MainGUI extends JFrame{
         //Initialize panel
         centerPanel = new JPanel();
 
-        //Initialize & design queue count display
+        //Initialize &amp; design queue count display
         open = new JButton("Open");
         open.setBackground(dustyColor);
         open.setOpaque(true);
@@ -347,7 +373,7 @@ public class MainGUI extends JFrame{
             bigData[t] = new String("");
         }
 
-        //Initialize individual thread displays, set to JLabels & JScrollPane & set design
+        //Initialize individual thread displays, set to JLabels &amp; JScrollPane &amp; set design
         completed.setHorizontalAlignment(0);
         completed.setForeground(metal);
 
@@ -363,7 +389,7 @@ public class MainGUI extends JFrame{
         spane.setColumnHeaderView(completed);
         spane.setOpaque(true);
 
-        //Set layout & add components to center panel
+        //Set layout &amp; add components to center panel
         centerPanel.setLayout(new GridLayout(2,1));
         centerPanel.add(spane);
         //centerPanel.add(count);

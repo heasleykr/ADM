@@ -1,3 +1,4 @@
+package edu.sdccd.cisc191.heaslykr;
 
 /**
  * Class that keeps total for the download queue. You can get information
